@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BookCompanion2</string>
+    <string name="find_a_book">Find a Book</string>
+    <string name="save_book_button">Save Book</string>
+    <string name="book_cover">Book Cover</string>
+    <string name="insert_book_name">Insert Book Name</string>
+    <string name="search_button">Search</string>
+</resources>
