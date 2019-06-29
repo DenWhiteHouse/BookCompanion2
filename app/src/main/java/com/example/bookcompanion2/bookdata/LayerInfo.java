@@ -1,10 +1,9 @@
 
-package com.example.bookcompanion2.BookData;
+package com.example.bookcompanion2.bookdata;
 
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 import com.squareup.moshi.Json;
 
 public class LayerInfo implements Parcelable

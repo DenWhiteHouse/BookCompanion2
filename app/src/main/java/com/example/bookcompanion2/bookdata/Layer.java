@@ -1,9 +1,8 @@
 
-package com.example.bookcompanion2.BookData;
+package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 import com.squareup.moshi.Json;
 
 public class Layer implements Parcelable

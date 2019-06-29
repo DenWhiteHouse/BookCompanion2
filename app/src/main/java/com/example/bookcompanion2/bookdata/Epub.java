@@ -1,41 +1,40 @@
 
-package com.example.bookcompanion2.BookData;
+package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 import com.squareup.moshi.Json;
 
-public class Pdf implements Parcelable
+public class Epub implements Parcelable
 {
 
     @Json(name = "isAvailable")
     private Boolean isAvailable;
     @Json(name = "downloadLink")
     private String downloadLink;
-    public final static Creator<Pdf> CREATOR = new Creator<Pdf>() {
+    public final static Creator<Epub> CREATOR = new Creator<Epub>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public Pdf createFromParcel(Parcel in) {
-            return new Pdf(in);
+        public Epub createFromParcel(Parcel in) {
+            return new Epub(in);
         }
 
-        public Pdf[] newArray(int size) {
-            return (new Pdf[size]);
+        public Epub[] newArray(int size) {
+            return (new Epub[size]);
         }
 
     }
     ;
 
-    protected Pdf(Parcel in) {
+    protected Epub(Parcel in) {
         this.isAvailable = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.downloadLink = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public Pdf() {
+    public Epub() {
     }
 
     public Boolean getIsAvailable() {

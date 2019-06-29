@@ -7,13 +7,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProviders
 
 import com.example.bookcompanion2.R
-import com.example.bookcompanion2.databinding.OptionFragmentBinding
 import com.example.bookcompanion2.databinding.SearchFragmentBinding
 
 class SearchFragment : Fragment() {
+
+    /**
+     * Lazily initialize our [OverviewViewModel].
+     */
+    private val viewModel: SearchViewModel by lazy {
+        ViewModelProviders.of(this).get(SearchViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +31,11 @@ class SearchFragment : Fragment() {
         )
 
         val editView = binding.bookNameEditView
+        // Giving the binding access to the OverviewViewModel
+        binding.viewModel = viewModel
 
         binding.searchButton.setOnClickListener { v ->
-            if(!editView.text.isNullOrBlank()){
-                Toast.makeText(context,editView.text.toString(),Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(context,"Please insert a title first",Toast.LENGTH_SHORT).show()
-            }
+            viewModel.searchButtonPressed(context!!,editView.text.toString())
         }
 
         return binding.root
