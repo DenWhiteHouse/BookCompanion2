@@ -3,56 +3,66 @@ package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-public class Book implements Parcelable
+public class Item implements Parcelable
 {
 
-    @Json(name = "kind")
+    @SerializedName("kind")
+    @Expose
     private String kind;
-    @Json(name = "id")
+    @SerializedName("id")
+    @Expose
     private String id;
-    @Json(name = "etag")
+    @SerializedName("etag")
+    @Expose
     private String etag;
-    @Json(name = "selfLink")
+    @SerializedName("selfLink")
+    @Expose
     private String selfLink;
-    @Json(name = "volumeInfo")
+    @SerializedName("volumeInfo")
+    @Expose
     private VolumeInfo volumeInfo;
-    @Json(name = "layerInfo")
-    private LayerInfo layerInfo;
-    @Json(name = "saleInfo")
+    @SerializedName("saleInfo")
+    @Expose
     private SaleInfo saleInfo;
-    @Json(name = "accessInfo")
+    @SerializedName("accessInfo")
+    @Expose
     private AccessInfo accessInfo;
-    public final static Creator<Book> CREATOR = new Creator<Book>() {
+    @SerializedName("searchInfo")
+    @Expose
+    private SearchInfo searchInfo;
+    public final static Creator<Item> CREATOR = new Creator<Item>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public Book createFromParcel(Parcel in) {
-            return new Book(in);
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
         }
 
-        public Book[] newArray(int size) {
-            return (new Book[size]);
+        public Item[] newArray(int size) {
+            return (new Item[size]);
         }
 
     }
     ;
 
-    protected Book(Parcel in) {
+    protected Item(Parcel in) {
         this.kind = ((String) in.readValue((String.class.getClassLoader())));
         this.id = ((String) in.readValue((String.class.getClassLoader())));
         this.etag = ((String) in.readValue((String.class.getClassLoader())));
         this.selfLink = ((String) in.readValue((String.class.getClassLoader())));
         this.volumeInfo = ((VolumeInfo) in.readValue((VolumeInfo.class.getClassLoader())));
-        this.layerInfo = ((LayerInfo) in.readValue((LayerInfo.class.getClassLoader())));
         this.saleInfo = ((SaleInfo) in.readValue((SaleInfo.class.getClassLoader())));
         this.accessInfo = ((AccessInfo) in.readValue((AccessInfo.class.getClassLoader())));
+        this.searchInfo = ((SearchInfo) in.readValue((SearchInfo.class.getClassLoader())));
     }
 
-    public Book() {
+    public Item() {
     }
 
     public String getKind() {
@@ -95,14 +105,6 @@ public class Book implements Parcelable
         this.volumeInfo = volumeInfo;
     }
 
-    public LayerInfo getLayerInfo() {
-        return layerInfo;
-    }
-
-    public void setLayerInfo(LayerInfo layerInfo) {
-        this.layerInfo = layerInfo;
-    }
-
     public SaleInfo getSaleInfo() {
         return saleInfo;
     }
@@ -119,15 +121,23 @@ public class Book implements Parcelable
         this.accessInfo = accessInfo;
     }
 
+    public SearchInfo getSearchInfo() {
+        return searchInfo;
+    }
+
+    public void setSearchInfo(SearchInfo searchInfo) {
+        this.searchInfo = searchInfo;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(kind);
         dest.writeValue(id);
         dest.writeValue(etag);
         dest.writeValue(selfLink);
         dest.writeValue(volumeInfo);
-        dest.writeValue(layerInfo);
         dest.writeValue(saleInfo);
         dest.writeValue(accessInfo);
+        dest.writeValue(searchInfo);
     }
 
     public int describeContents() {

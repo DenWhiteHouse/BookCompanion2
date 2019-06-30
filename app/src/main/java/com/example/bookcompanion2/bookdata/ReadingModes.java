@@ -3,14 +3,18 @@ package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class ReadingModes implements Parcelable
 {
 
-    @Json(name = "text")
+    @SerializedName("text")
+    @Expose
     private Boolean text;
-    @Json(name = "image")
+    @SerializedName("image")
+    @Expose
     private Boolean image;
     public final static Creator<ReadingModes> CREATOR = new Creator<ReadingModes>() {
 

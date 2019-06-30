@@ -4,53 +4,73 @@ package com.example.bookcompanion2.bookdata;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class VolumeInfo implements Parcelable
 {
 
-    @Json(name = "title")
+    @SerializedName("title")
+    @Expose
     private String title;
-    @Json(name = "authors")
+    @SerializedName("authors")
+    @Expose
     private List<String> authors = null;
-    @Json(name = "publisher")
+    @SerializedName("publisher")
+    @Expose
     private String publisher;
-    @Json(name = "publishedDate")
+    @SerializedName("publishedDate")
+    @Expose
     private String publishedDate;
-    @Json(name = "description")
+    @SerializedName("description")
+    @Expose
     private String description;
-    @Json(name = "readingModes")
+    @SerializedName("industryIdentifiers")
+    @Expose
+    private List<IndustryIdentifier> industryIdentifiers = null;
+    @SerializedName("readingModes")
+    @Expose
     private ReadingModes readingModes;
-    @Json(name = "pageCount")
-    private Integer pageCount;
-    @Json(name = "printedPageCount")
-    private Integer printedPageCount;
-    @Json(name = "dimensions")
-    private Dimensions dimensions;
-    @Json(name = "printType")
+    @SerializedName("pageCount")
+    @Expose
+    private Long pageCount;
+    @SerializedName("printType")
+    @Expose
     private String printType;
-    @Json(name = "averageRating")
-    private Double averageRating;
-    @Json(name = "ratingsCount")
-    private Integer ratingsCount;
-    @Json(name = "maturityRating")
+    @SerializedName("categories")
+    @Expose
+    private List<String> categories = null;
+    @SerializedName("maturityRating")
+    @Expose
     private String maturityRating;
-    @Json(name = "allowAnonLogging")
+    @SerializedName("allowAnonLogging")
+    @Expose
     private Boolean allowAnonLogging;
-    @Json(name = "contentVersion")
+    @SerializedName("contentVersion")
+    @Expose
     private String contentVersion;
-    @Json(name = "panelizationSummary")
+    @SerializedName("panelizationSummary")
+    @Expose
     private PanelizationSummary panelizationSummary;
-    @Json(name = "imageLinks")
+    @SerializedName("imageLinks")
+    @Expose
     private ImageLinks imageLinks;
-    @Json(name = "language")
+    @SerializedName("language")
+    @Expose
     private String language;
-    @Json(name = "previewLink")
+    @SerializedName("previewLink")
+    @Expose
     private String previewLink;
-    @Json(name = "infoLink")
+    @SerializedName("infoLink")
+    @Expose
     private String infoLink;
-    @Json(name = "canonicalVolumeLink")
+    @SerializedName("canonicalVolumeLink")
+    @Expose
     private String canonicalVolumeLink;
+    @SerializedName("subtitle")
+    @Expose
+    private String subtitle;
     public final static Creator<VolumeInfo> CREATOR = new Creator<VolumeInfo>() {
 
 
@@ -74,13 +94,11 @@ public class VolumeInfo implements Parcelable
         this.publisher = ((String) in.readValue((String.class.getClassLoader())));
         this.publishedDate = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.industryIdentifiers, (IndustryIdentifier.class.getClassLoader()));
         this.readingModes = ((ReadingModes) in.readValue((ReadingModes.class.getClassLoader())));
-        this.pageCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.printedPageCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.dimensions = ((Dimensions) in.readValue((Dimensions.class.getClassLoader())));
+        this.pageCount = ((Long) in.readValue((Long.class.getClassLoader())));
         this.printType = ((String) in.readValue((String.class.getClassLoader())));
-        this.averageRating = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.ratingsCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        in.readList(this.categories, (String.class.getClassLoader()));
         this.maturityRating = ((String) in.readValue((String.class.getClassLoader())));
         this.allowAnonLogging = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.contentVersion = ((String) in.readValue((String.class.getClassLoader())));
@@ -90,6 +108,7 @@ public class VolumeInfo implements Parcelable
         this.previewLink = ((String) in.readValue((String.class.getClassLoader())));
         this.infoLink = ((String) in.readValue((String.class.getClassLoader())));
         this.canonicalVolumeLink = ((String) in.readValue((String.class.getClassLoader())));
+        this.subtitle = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public VolumeInfo() {
@@ -135,6 +154,14 @@ public class VolumeInfo implements Parcelable
         this.description = description;
     }
 
+    public List<IndustryIdentifier> getIndustryIdentifiers() {
+        return industryIdentifiers;
+    }
+
+    public void setIndustryIdentifiers(List<IndustryIdentifier> industryIdentifiers) {
+        this.industryIdentifiers = industryIdentifiers;
+    }
+
     public ReadingModes getReadingModes() {
         return readingModes;
     }
@@ -143,28 +170,12 @@ public class VolumeInfo implements Parcelable
         this.readingModes = readingModes;
     }
 
-    public Integer getPageCount() {
+    public Long getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(Integer pageCount) {
+    public void setPageCount(Long pageCount) {
         this.pageCount = pageCount;
-    }
-
-    public Integer getPrintedPageCount() {
-        return printedPageCount;
-    }
-
-    public void setPrintedPageCount(Integer printedPageCount) {
-        this.printedPageCount = printedPageCount;
-    }
-
-    public Dimensions getDimensions() {
-        return dimensions;
-    }
-
-    public void setDimensions(Dimensions dimensions) {
-        this.dimensions = dimensions;
     }
 
     public String getPrintType() {
@@ -175,20 +186,12 @@ public class VolumeInfo implements Parcelable
         this.printType = printType;
     }
 
-    public Double getAverageRating() {
-        return averageRating;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public void setAverageRating(Double averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Integer getRatingsCount() {
-        return ratingsCount;
-    }
-
-    public void setRatingsCount(Integer ratingsCount) {
-        this.ratingsCount = ratingsCount;
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 
     public String getMaturityRating() {
@@ -263,19 +266,25 @@ public class VolumeInfo implements Parcelable
         this.canonicalVolumeLink = canonicalVolumeLink;
     }
 
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(title);
         dest.writeList(authors);
         dest.writeValue(publisher);
         dest.writeValue(publishedDate);
         dest.writeValue(description);
+        dest.writeList(industryIdentifiers);
         dest.writeValue(readingModes);
         dest.writeValue(pageCount);
-        dest.writeValue(printedPageCount);
-        dest.writeValue(dimensions);
         dest.writeValue(printType);
-        dest.writeValue(averageRating);
-        dest.writeValue(ratingsCount);
+        dest.writeList(categories);
         dest.writeValue(maturityRating);
         dest.writeValue(allowAnonLogging);
         dest.writeValue(contentVersion);
@@ -285,6 +294,7 @@ public class VolumeInfo implements Parcelable
         dest.writeValue(previewLink);
         dest.writeValue(infoLink);
         dest.writeValue(canonicalVolumeLink);
+        dest.writeValue(subtitle);
     }
 
     public int describeContents() {

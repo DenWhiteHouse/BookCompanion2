@@ -3,30 +3,42 @@ package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class AccessInfo implements Parcelable
 {
 
-    @Json(name = "country")
+    @SerializedName("country")
+    @Expose
     private String country;
-    @Json(name = "viewability")
+    @SerializedName("viewability")
+    @Expose
     private String viewability;
-    @Json(name = "embeddable")
+    @SerializedName("embeddable")
+    @Expose
     private Boolean embeddable;
-    @Json(name = "publicDomain")
+    @SerializedName("publicDomain")
+    @Expose
     private Boolean publicDomain;
-    @Json(name = "textToSpeechPermission")
+    @SerializedName("textToSpeechPermission")
+    @Expose
     private String textToSpeechPermission;
-    @Json(name = "epub")
+    @SerializedName("epub")
+    @Expose
     private Epub epub;
-    @Json(name = "pdf")
+    @SerializedName("pdf")
+    @Expose
     private Pdf pdf;
-    @Json(name = "webReaderLink")
+    @SerializedName("webReaderLink")
+    @Expose
     private String webReaderLink;
-    @Json(name = "accessViewStatus")
+    @SerializedName("accessViewStatus")
+    @Expose
     private String accessViewStatus;
-    @Json(name = "quoteSharingAllowed")
+    @SerializedName("quoteSharingAllowed")
+    @Expose
     private Boolean quoteSharingAllowed;
     public final static Creator<AccessInfo> CREATOR = new Creator<AccessInfo>() {
 

@@ -30,6 +30,9 @@ class SearchFragment : Fragment() {
             inflater, R.layout.search_fragment, container, false
         )
 
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.setLifecycleOwner(this)
+
         val editView = binding.bookNameEditView
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel

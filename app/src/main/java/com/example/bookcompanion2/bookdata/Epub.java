@@ -3,15 +3,19 @@ package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Epub implements Parcelable
 {
 
-    @Json(name = "isAvailable")
+    @SerializedName("isAvailable")
+    @Expose
     private Boolean isAvailable;
-    @Json(name = "downloadLink")
-    private String downloadLink;
+    @SerializedName("acsTokenLink")
+    @Expose
+    private String acsTokenLink;
     public final static Creator<Epub> CREATOR = new Creator<Epub>() {
 
 
@@ -31,7 +35,7 @@ public class Epub implements Parcelable
 
     protected Epub(Parcel in) {
         this.isAvailable = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-        this.downloadLink = ((String) in.readValue((String.class.getClassLoader())));
+        this.acsTokenLink = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Epub() {
@@ -45,17 +49,17 @@ public class Epub implements Parcelable
         this.isAvailable = isAvailable;
     }
 
-    public String getDownloadLink() {
-        return downloadLink;
+    public String getAcsTokenLink() {
+        return acsTokenLink;
     }
 
-    public void setDownloadLink(String downloadLink) {
-        this.downloadLink = downloadLink;
+    public void setAcsTokenLink(String acsTokenLink) {
+        this.acsTokenLink = acsTokenLink;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(isAvailable);
-        dest.writeValue(downloadLink);
+        dest.writeValue(acsTokenLink);
     }
 
     public int describeContents() {

@@ -3,14 +3,18 @@ package com.example.bookcompanion2.bookdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.squareup.moshi.Json;
+import android.os.Parcelable.Creator;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class PanelizationSummary implements Parcelable
 {
 
-    @Json(name = "containsEpubBubbles")
+    @SerializedName("containsEpubBubbles")
+    @Expose
     private Boolean containsEpubBubbles;
-    @Json(name = "containsImageBubbles")
+    @SerializedName("containsImageBubbles")
+    @Expose
     private Boolean containsImageBubbles;
     public final static Creator<PanelizationSummary> CREATOR = new Creator<PanelizationSummary>() {
 
