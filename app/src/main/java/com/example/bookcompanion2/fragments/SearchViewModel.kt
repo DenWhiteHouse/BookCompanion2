@@ -1,6 +1,8 @@
 package com.example.bookcompanion2.fragments
 
 import android.content.Context
+import android.renderscript.ScriptGroup
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,8 +42,8 @@ class SearchViewModel : ViewModel() {
             try {
                 _status.value = BooksApiStatus.LOADING
                 var result = getBooksDeferred.await()
-                _status.value = BooksApiStatus.DONE
                 _book = result
+                _status.value = BooksApiStatus.DONE
                 var temporaryString = book.items.get(0).volumeInfo.pageCount.toString()
                 Toast.makeText(context,temporaryString, Toast.LENGTH_SHORT).show()
             }catch(e: Exception){
@@ -49,9 +51,6 @@ class SearchViewModel : ViewModel() {
             }
         }
     }
-
-
-
 
     //Search Function
     fun searchButtonPressed(context: Context, text: String){
@@ -64,18 +63,5 @@ class SearchViewModel : ViewModel() {
         }
     }
 
-    fun RetrofitStatus(context: Context) {
-        when (status) {
-            BooksApiStatus.LOADING -> {
-                Toast.makeText(context, "LOADING", Toast.LENGTH_SHORT).show()
-            }
-            BooksApiStatus.ERROR -> {
-                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
-            }
-            BooksApiStatus.DONE -> {
-                Toast.makeText(context, "DONE", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 }

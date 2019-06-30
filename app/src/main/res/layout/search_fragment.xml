@@ -72,6 +72,7 @@
                 app:layout_constraintHorizontal_bias="0.142" tools:text="pages"
                 android:contentDescription="@string/book_cover"/>
         <Button
+                android:visibility="invisible"
                 android:text="@string/save_book_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
